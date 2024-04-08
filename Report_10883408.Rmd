@@ -28,7 +28,7 @@ ggplot(earthquake, aes(x=body, y=surface, color=type, shape=type)) +
 
 
 
-```{r }
+```{r part B(random forest)}
 # Load necessary libraries
 library(randomForest)
 library(ggplot2)
@@ -60,4 +60,9 @@ ggplot(data, aes(x=body, y=surface, color=type)) +
   labs(title="Random Forest Decision Boundary with Data Points")
 
 ```
+
+```{r }
+
+```
+
 
