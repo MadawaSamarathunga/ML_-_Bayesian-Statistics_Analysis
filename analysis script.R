@@ -1,7 +1,7 @@
 install.packages("ggplot2")
 
 library(ggplot2)
-
+library(ggplot)
 earthquake <- read.table(file = "earthquake.txt", header = TRUE, sep = "", dec = ".")
 
 
@@ -15,4 +15,6 @@ ggplot(earthquake, aes(x=body, y=surface, color=type, shape=type)) +
        color = "Type",
        shape = "Type") +
   scale_color_manual(values = c("equake" = "blue", "explosn" = "red")) +
-  geom_smooth(method = "lm", se = FALSE, aes(group=type), color="black") # Optional: Add linear regression lines
+  geom_smooth(method = "lm", se = FALSE, aes(group=type), color="black") 
+
+
