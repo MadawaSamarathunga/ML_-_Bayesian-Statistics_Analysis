@@ -29,7 +29,7 @@ earthquake <- read.table(file = "earthquake.txt", header = TRUE, sep = "", dec =
 data <- read.table(file = "earthquake.txt", header = TRUE, sep = "", dec = ".")
 
 ggplot(earthquake, aes(x=body, y=surface, color=type)) +
-  geom_point(size=1, alpha=0.8, shape=19) + theme_light(base_size = 12) +
+  geom_point(size=2, alpha=0.8, shape=19) + theme_light(base_size = 12) +
   labs(title = "Body-wave Magnitude vs. Surface-wave Magnitude",subtitle = "Comparing earthquake types",
        x = "Body-wave Magnitude (mb)",
        y = "Surface-wave Magnitude (Ms)",
@@ -38,7 +38,7 @@ ggplot(earthquake, aes(x=body, y=surface, color=type)) +
 
 ```
 
-```{r}
+```{r echo=FALSE}
 library(ggplot2)
 
 ggplot(data, aes(x = type, y = body, fill = type)) +
@@ -51,7 +51,7 @@ ggplot(data, aes(x = type, y = body, fill = type)) +
 
 ```
 
-```{r}
+```{r echo=FALSE}
 library(ggplot2)
 
 ggplot(data, aes(x = type, y = surface, fill = type)) +
@@ -69,23 +69,57 @@ ggplot(data, aes(x = type, y = surface, fill = type)) +
 
 ```{r part B(random forest), echo=FALSE}
 
+library(randomForest)
+library(caret)
+library(ggplot2)
 
 data <- read.table(file = "earthquake.txt", header = TRUE, sep = "", dec = ".")
 
 data$type <- as.factor(data$type)
 
-set.seed(123) 
-rf_model <- randomForest(type ~ body + surface, data=data)
+# Split the data into training and testing sets
+set.seed(123) # for reproducibility
+trainIndex <- createDataPartition(data$type, p=0.8, list=FALSE)
+trainData <- data[trainIndex, ]
+testData <- data[-trainIndex, ]
 
-plot_data <- with(data, expand.grid(body=seq(min(body), max(body), length.out=100),
-                                    surface=seq(min(surface), max(surface), length.out=100)))
-plot_data$type <- predict(rf_model, newdata=plot_data, type="class")
+# Train the RandomForest model
+control <- trainControl(method="cv", number=5) # 5-fold cross-validation
+tuneGrid <- expand.grid(mtry=c(1,2)) # Tuning the 'mtry' parameter
+rfModel <- train(type ~ body + surface, data=trainData, method="rf",
+                 trControl=control, tuneGrid=tuneGrid)
 
-ggplot(data, aes(x=body, y=surface, color=type)) +
-  geom_point() +
-  geom_point(data=plot_data, aes(x=body, y=surface, color=type), alpha=0.5) +
-  labs(title="Random Forest Decision Boundary with Data Points")
+# Model visualization
+# Creating a grid to cover the range of body and surface values
+surfaceRange <- range(data$surface)
+bodyRange <- range(data$body)
+grid <- expand.grid(body=seq(from=bodyRange[1], to=bodyRange[2], length.out=100),
+                    surface=seq(from=surfaceRange[1], to=surfaceRange[2], length.out=100))
 
+# Predicting over the grid
+grid$prediction <- predict(rfModel, newdata=grid)
+
+# Plotting with corrected data reference for geom_point
+ggplot() +
+  geom_tile(data = grid, aes(x = body, y = surface, fill = prediction), alpha = 0.5) +
+  geom_point(data = data, aes(x = body, y = surface, color = type), size = 3, alpha = 0.6) +
+  scale_fill_brewer(palette = "Set1", name = "Predicted Type") +
+  scale_color_brewer(palette = "Set2", name = "Actual Type") +
+  labs(title = "Earthquake vs. Nuclear Explosion Prediction",
+       subtitle = "Random Forest Model Predictions vs. Actual Data",
+       x = "Body-Wave Magnitude (mb)",
+       y = "Surface-Wave Magnitude (Ms)",
+       fill = "Predicted Type",
+       color = "Actual Type") +
+  theme_minimal() +
+  theme(legend.position = "right",
+        plot.title = element_text(size = 16, face = "bold"),
+        plot.subtitle = element_text(size = 12),
+        axis.title = element_text(size = 12),
+        legend.title = element_text(size = 12),
+        legend.text = element_text(size = 10)) +
+  guides(fill = guide_legend(override.aes = list(alpha = 1)),
+         color = guide_legend(override.aes = list(alpha = 1)))
 ```
 
 
