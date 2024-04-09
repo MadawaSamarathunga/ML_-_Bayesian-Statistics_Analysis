@@ -1,22 +1,27 @@
 install.packages("ggplot2")
 
 library(ggplot2)
-library(ggplot)
+
 
 earthquake <- read.table(file = "earthquake.txt", header = TRUE, sep = "", dec = ".")
 
 
-# Visualizing the data
+library(ggplot2)
+library(RColorBrewer)
+
+# Assuming 'earthquake' is your dataframe and is already loaded
 ggplot(earthquake, aes(x=body, y=surface, color=type, shape=type)) +
-  geom_point(size=3) +
-  theme_minimal() +
+  geom_point(size=4, alpha=0.8) + # Slightly larger and semi-transparent points
+  theme_light(base_size = 14) +   # A lighter theme with adjusted base font size
   labs(title = "Body-wave Magnitude vs. Surface-wave Magnitude",
+       subtitle = "Comparing earthquake types",
        x = "Body-wave Magnitude (mb)",
        y = "Surface-wave Magnitude (Ms)",
        color = "Type",
        shape = "Type") +
-  scale_color_manual(values = c("equake" = "blue", "explosn" = "red")) +
-  geom_smooth(method = "lm", se = FALSE, aes(group=type), color="black") 
+  scale_color_brewer(palette = "Set1") + # A more accessible color palette
+  theme(legend.position = "right") # Adjust legend position
+
 
 
 ########################part B first one ########################################

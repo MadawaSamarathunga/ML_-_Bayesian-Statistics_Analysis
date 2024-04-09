@@ -2,54 +2,81 @@
 title: "Report_10883408"
 author: '10883408'
 date: "2024-04-08"
-output: pdf_document
+output:
+  pdf_document: 
+   latex_engine: xelatex
+  word_document: default
+editor_options:
+  chunk_output_type: console
 ---
 
+
+```{r loadlib, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(caret)
+library(randomForest)
+library(ggplot2)
+library(dplyr)
+library(e1071)
+library(rpart)
+library(rpart.plot)
+library(RColorBrewer)
+```
+
+## ML part A 
 ```{r part A, echo=FALSE}
 
-library(ggplot2)
-
 earthquake <- read.table(file = "earthquake.txt", header = TRUE, sep = "", dec = ".")
+data <- read.table(file = "earthquake.txt", header = TRUE, sep = "", dec = ".")
 
-
-# Visualizing the data
-ggplot(earthquake, aes(x=body, y=surface, color=type, shape=type)) +
-  geom_point(size=3) +
-  theme_minimal() +
-  labs(title = "Body-wave Magnitude vs. Surface-wave Magnitude",
+ggplot(earthquake, aes(x=body, y=surface, color=type)) +
+  geom_point(size=1, alpha=0.8, shape=19) + theme_light(base_size = 12) +
+  labs(title = "Body-wave Magnitude vs. Surface-wave Magnitude",subtitle = "Comparing earthquake types",
        x = "Body-wave Magnitude (mb)",
        y = "Surface-wave Magnitude (Ms)",
-       color = "Type",
-       shape = "Type") +
-  scale_color_manual(values = c("equake" = "blue", "explosn" = "red")) +
-  geom_smooth(method = "lm", se = FALSE, aes(group=type), color="black") 
+       color = "Type") +
+  scale_color_brewer(palette = "Set1") +theme(legend.position = "right")
+
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(data, aes(x = type, y = body, fill = type)) +
+  geom_boxplot(alpha = 0.7) +
+  geom_jitter(width = 0.2, alpha = 0.5, color = "darkgray") +
+  labs(title = "Box Plot with Jitter of Body-Wave Magnitude by Type",
+       x = "Type",
+       y = "Body-Wave Magnitude (mb)") +
+  theme_minimal()
+
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(data, aes(x = type, y = surface, fill = type)) +
+  geom_boxplot(alpha = 0.7) +
+  geom_jitter(width = 0.2, alpha = 0.5, color = "darkgray") +
+  labs(title = "Box Plot with Jitter of Surface-Wave Magnitude by Type",
+       x = "Type",
+       y = "Surface-Wave Magnitude (Ms)") +
+  theme_minimal()
 
 ```
 
 
+## ML part B
 
-```{r part B(random forest)}
-# Load necessary libraries
-library(randomForest)
-library(ggplot2)
-library(caret)
+```{r part B(random forest), echo=FALSE}
 
 
 data <- read.table(file = "earthquake.txt", header = TRUE, sep = "", dec = ".")
-# 2. Preprocess the data (ensure correct data types)
+
 data$type <- as.factor(data$type)
 
-# 3. For hyperparameter tuning, normally you'd create a train-test split or use cross-validation.
-# Since we're evaluating with leave-one-out cross-validation later, we'll skip splitting here.
-
-# 4. Train the Random Forest model
-# Perform a grid search for hyperparameter tuning (example: mtry)
-# For simplicity, we'll skip the tuning part and use default parameters here
-set.seed(123) # For reproducibility
+set.seed(123) 
 rf_model <- randomForest(type ~ body + surface, data=data)
 
-# 5. Model visualization
-# Predict on a grid to visualize decision boundaries
 plot_data <- with(data, expand.grid(body=seq(min(body), max(body), length.out=100),
                                     surface=seq(min(surface), max(surface), length.out=100)))
 plot_data$type <- predict(rf_model, newdata=plot_data, type="class")
@@ -61,8 +88,6 @@ ggplot(data, aes(x=body, y=surface, color=type)) +
 
 ```
 
-```{r }
 
-```
 
 
