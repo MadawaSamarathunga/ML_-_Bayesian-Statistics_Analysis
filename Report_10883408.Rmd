@@ -52,6 +52,7 @@ ggplot(data, aes(x = type, y = body, fill = type)) +
 ```
 
 ```{r echo=FALSE}
+
 library(ggplot2)
 
 ggplot(data, aes(x = type, y = surface, fill = type)) +
@@ -100,6 +101,7 @@ grid <- expand.grid(body=seq(from=bodyRange[1], to=bodyRange[2], length.out=100)
 grid$prediction <- predict(rfModel, newdata=grid)
 
 # Plotting with corrected data reference for geom_point
+
 ggplot() +
   geom_tile(data = grid, aes(x = body, y = surface, fill = prediction), alpha = 0.5) +
   geom_point(data = data, aes(x = body, y = surface, color = type), size = 3, alpha = 0.6) +
@@ -120,6 +122,18 @@ ggplot() +
         legend.text = element_text(size = 10)) +
   guides(fill = guide_legend(override.aes = list(alpha = 1)),
          color = guide_legend(override.aes = list(alpha = 1)))
+
+```
+```{r}
+# Extract the Random Forest model from the caret object
+rf <- rfModel$finalModel
+
+# Error rate plot
+plot(rf$err.rate[, "OOB"], type = "l", col = "red",
+     xlab = "Number of Trees",
+     ylab = "OOB Error Rate",
+     main = "OOB Error Rate vs. Number of Trees")
+
 ```
 
 
