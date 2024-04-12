@@ -38,6 +38,21 @@ ggplot(earthquake, aes(x=body, y=surface, color=type)) +
 
 ```
 
+### Graphical Analysis:
+The scatter plot created by this code would show each earthquake or explosion event as a point in the space defined by its body-wave and surface-wave magnitudes. The colors distinguish between different types of seismic events, which could be crucial for identifying patterns or clusters specific to earthquakes versus explosions.
+
+### Clustering: If there are visible clusters or distinct areas predominantly occupied by one type of event, this could indicate that these two features (body-wave and surface-wave magnitudes) are effective for distinguishing between earthquakes and explosions.
+Overlaps: Significant overlapping of colors might suggest that the two features alone are not sufficient to distinguish between the event types without additional information or more complex modeling.
+
+### Contextual Relevance:
+In the context of monitoring for unauthorized nuclear tests, this visualization helps in quickly assessing whether there are clear, distinguishable patterns in seismic readings that could indicate nuclear activities. Effective differentiation between natural seismic events (earthquakes) and man-made seismic events (nuclear explosions) is crucial for global security and monitoring compliance with international treaties such as the Comprehensive Nuclear-Test-Ban Treaty (CTBT).
+
+### Numerical Summaries:
+While the provided code focuses on visual analysis, numerical summaries (like the mean, median, variance of mb and Ms for each type) would complement this by quantifying the central tendencies and dispersions. This could further aid in understanding how significantly the magnitudes for each type differ statistically.
+
+### Justification:
+The choice of a scatter plot is justified as it allows stakeholders to visually parse the relationship between two continuous variables across categories. Given the high stakes involved in nuclear monitoring, quick visual assessments alongside rigorous statistical analysis are imperative. The plot facilitates this by providing a clear, immediate visual summary of the data as per the described features.
+
 ```{r echo=FALSE}
 library(ggplot2)
 
