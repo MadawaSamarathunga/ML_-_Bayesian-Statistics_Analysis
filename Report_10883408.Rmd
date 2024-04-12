@@ -201,43 +201,42 @@ print(best.parameters)
 # Part D
 
 ```{r echo=FALSE}
-
 library(ggplot2)
 
-# Load the data
+# Load the dataset
 data <- read.table("earthquake.txt", header = TRUE)
 
-# Select only the body and surface columns for clustering
-data_to_cluster <- data[, c("body", "surface")]
+# Extract just the body and surface variables for clustering
+clustering_data <- data[, c("body", "surface")]
 
-# Use the Elbow method to determine the optimal number of clusters
-set.seed(42)  # for reproducibility
-wss <- sapply(1:10, function(k){kmeans(data_to_cluster, k, nstart = 10 )$tot.withinss})
+# Determine the total within sums of squares for a range of number of clusters
+wss <- (nrow(clustering_data) - 1) * sum(apply(clustering_data, 2, var))
+for (i in 2:10) {
+  wss[i] <- sum(kmeans(clustering_data, centers = i, nstart = 20)$withinss)
+}
 
-# Plot the Elbow method results
-elbow_plot <- data.frame(Number_of_Clusters = 1:10, WSS = wss)
-ggplot(elbow_plot, aes(x = Number_of_Clusters, y = WSS)) + 
-  geom_point() +
-  geom_line() +
-  theme_minimal() +
-  ggtitle("Elbow Method for Determining Optimal Number of Clusters")
+# Elbow method plot to find optimal number of clusters
+plot(1:10, wss, type = "b", xlab = "Number of Clusters", ylab = "Within groups sum of squares")
 
-# Perform K-means clustering with the chosen number of clusters (assuming 2 from the Elbow plot)
-set.seed(42)
-kmeans_result <- kmeans(data_to_cluster, centers = 2)
+# Apply K-means clustering with different numbers of clusters
+for (k in 2:4) {
+  set.seed(123) # Set seed for reproducibility
+  cluster <- kmeans(clustering_data, centers = k, nstart = 20)
+  data$cluster <- as.factor(cluster$cluster)
 
-# Attach cluster results to the original data
-data$cluster <- as.factor(kmeans_result$cluster)
+  # Plot the clusters
+  p <- ggplot(data, aes(x = body, y = surface, color = cluster)) +
+    geom_point(alpha = 0.5) +
+    scale_color_brewer(palette = "Dark2") +
+    labs(title = paste("K-means Clustering with", k, "Clusters"),
+         x = "Body-Wave Magnitude (mb)",
+         y = "Surface-Wave Magnitude (Ms)",
+         color = "Cluster") +
+    theme_minimal()
 
-# Plot the clusters
-cluster_plot <- ggplot(data, aes(x = body, y = surface, color = cluster)) + 
-  geom_point(alpha = 0.6, size = 4) +
-  theme_minimal() +
-  ggtitle("Cluster Plot of Seismic Data")
-
-# Print the plots
-print(elbow_plot)
-print(cluster_plot)
+  # Print the plot in RStudio
+  print(p)
+}
 
 
 ```
