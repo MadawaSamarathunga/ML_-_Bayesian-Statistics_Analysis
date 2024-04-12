@@ -84,7 +84,7 @@ trainIndex <- createDataPartition(data$type, p=0.8, list=FALSE)
 trainData <- data[trainIndex, ]
 testData <- data[-trainIndex, ]
 
-# Train the RandomForest model
+# Train the Random-forest model
 control <- trainControl(method="cv", number=5) # 5-fold cross-validation
 tuneGrid <- expand.grid(mtry=c(1,2)) # Tuning the 'mtry' parameter
 rfModel <- train(type ~ body + surface, data=trainData, method="rf",
@@ -124,6 +124,8 @@ ggplot() +
          color = guide_legend(override.aes = list(alpha = 1)))
 
 ```
+
+### error rate
 ```{r}
 # Extract the Random Forest model from the caret object
 rf <- rfModel$finalModel
@@ -135,6 +137,111 @@ plot(rf$err.rate[, "OOB"], type = "l", col = "red",
      main = "OOB Error Rate vs. Number of Trees")
 
 ```
+
+
+```{r echo=FALSE}
+library(e1071)
+library(caret)
+library(ggplot2)
+
+# Load the dataset
+data <- read.table("earthquake.txt", header = TRUE)
+
+# Check for missing values and remove them
+data <- na.omit(data)
+
+# Encode factors as numeric
+data$type <- as.factor(data$type)
+
+# Split the data into predictors and response
+predictors <- data[, c("body", "surface")]
+response <- data$type
+
+# Define the tuning grid
+tune.grid <- expand.grid(sigma = 10^(-3:-1), C = 10^(1:3))
+
+# Define training control
+train.control <- trainControl(method = "cv", number = 10, classProbs = TRUE)
+
+# Train the SVM model
+set.seed(123)
+svm.model <- train(x = predictors, y = response, method = "svmRadial",
+                   preProcess = c("center", "scale"),
+                   trControl = train.control, tuneGrid = tune.grid)
+
+# Best model parameters
+best.parameters <- svm.model$bestTune
+
+# Create a grid over the range of the data
+body_seq <- seq(from = min(data$body), to = max(data$body), length.out = 100)
+surface_seq <- seq(from = min(data$surface), to = max(data$surface), length.out = 100)
+grid <- expand.grid(body = body_seq, surface = surface_seq)
+
+# Predict on the grid to visualize the decision boundary
+grid$prediction <- predict(svm.model, newdata = grid)
+
+# Create the SVM plot
+svm.plot <- ggplot() +
+  geom_tile(data = grid, aes(x = body, y = surface, fill = as.factor(prediction)), alpha = 0.2) +
+  geom_point(data = data, aes(x = body, y = surface, color = type)) +
+  scale_color_manual(values = c("red", "blue")) +
+  scale_fill_manual(values = c("lightpink", "lightblue")) +
+  labs(color = "Actual Type", fill = "Predicted Type") +
+  ggtitle("SVM Classification of Earthquake and Nuclear Explosions")
+
+# Print the plot
+print(svm.plot)
+
+# Print the best parameters
+print(best.parameters)
+
+
+
+```
+# Part D
+
+```{r echo=FALSE}
+
+library(ggplot2)
+
+# Load the data
+data <- read.table("earthquake.txt", header = TRUE)
+
+# Select only the body and surface columns for clustering
+data_to_cluster <- data[, c("body", "surface")]
+
+# Use the Elbow method to determine the optimal number of clusters
+set.seed(42)  # for reproducibility
+wss <- sapply(1:10, function(k){kmeans(data_to_cluster, k, nstart = 10 )$tot.withinss})
+
+# Plot the Elbow method results
+elbow_plot <- data.frame(Number_of_Clusters = 1:10, WSS = wss)
+ggplot(elbow_plot, aes(x = Number_of_Clusters, y = WSS)) + 
+  geom_point() +
+  geom_line() +
+  theme_minimal() +
+  ggtitle("Elbow Method for Determining Optimal Number of Clusters")
+
+# Perform K-means clustering with the chosen number of clusters (assuming 2 from the Elbow plot)
+set.seed(42)
+kmeans_result <- kmeans(data_to_cluster, centers = 2)
+
+# Attach cluster results to the original data
+data$cluster <- as.factor(kmeans_result$cluster)
+
+# Plot the clusters
+cluster_plot <- ggplot(data, aes(x = body, y = surface, color = cluster)) + 
+  geom_point(alpha = 0.6, size = 4) +
+  theme_minimal() +
+  ggtitle("Cluster Plot of Seismic Data")
+
+# Print the plots
+print(elbow_plot)
+print(cluster_plot)
+
+
+```
+
 
 
 
