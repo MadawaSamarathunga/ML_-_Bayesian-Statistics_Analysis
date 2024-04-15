@@ -183,6 +183,7 @@ plot(rf$err.rate[, "OOB"], type = "l", col = "red",
 
 ```
 Model Tuning
+
 ### Random Forest Training:
 Library: The randomForest package in R is used for constructing the Random Forest model.
 Data Partitioning: The dataset is divided into training (80%) and testing (20%) subsets using the createDataPartition function from the caret package, ensuring that the distribution of event types is balanced across both sets.
