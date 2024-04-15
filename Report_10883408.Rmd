@@ -182,7 +182,28 @@ plot(rf$err.rate[, "OOB"], type = "l", col = "red",
      main = "OOB Error Rate vs. Number of Trees")
 
 ```
+Model Tuning
+### Random Forest Training:
+Library: The randomForest package in R is used for constructing the Random Forest model.
+Data Partitioning: The dataset is divided into training (80%) and testing (20%) subsets using the createDataPartition function from the caret package, ensuring that the distribution of event types is balanced across both sets.
+Cross-validation: The model's hyperparameters are tuned using 5-fold cross-validation. This method splits the training set into five smaller sets; the model is trained on four of these while validating on the fifth, cycling through each subset. This process helps in optimizing model parameters while avoiding overfitting.
+Tuning the mtry Parameter: The mtry parameter, which determines the number of variables considered at each split in the tree, is tuned. Two values are tested: 1 and 2. This parameter significantly affects the model's performance and helps in finding a good balance between bias and variance.
 
+### Model Visualization
+Decision Surface Visualization:
+Grid Creation: A grid is created over the range of body and surface magnitudes found in the dataset. This grid allows for a comprehensive visualization of how the model classifies different combinations of these two features.
+Prediction on Grid: The Random Forest model predicts the type of event for each point on the grid, essentially plotting the decision boundaries between earthquake and explosion classifications.
+Plotting: Using ggplot2, the decision surface is visualized. The predictions for the grid are shown as a color-filled background (geom_tile), and actual data points are overlaid (geom_point) to show how well the predictions match reality. This visualization helps in understanding the model's classification rules visually.
+Model Evaluation
+### Error Rate Computation:
+Out-of-Bag (OOB) Error: The OOB error rate is plotted against the number of trees in the forest. OOB error is a method of measuring prediction error of random forests, decision trees, and other models utilizing bootstrap aggregating to sub-sample data sampled for the training process. OOB is the mean prediction error on each training sample xᵢ, using only the trees that did not have xᵢ in their bootstrap sample.
+Plot Details: The plot provides insight into how the model's accuracy evolves as more trees are added to the forest. Ideally, as the number of trees increases, the OOB error rate should decrease and then stabilize, indicating the model is neither underfitting nor overfitting.
+
+### Additional Evaluation with Leave-One-Out Cross-Validation (LOOCV)
+While not directly shown in the code snippets you provided, leave-one-out cross-validation (LOOCV) could be another method for evaluating the model. In LOOCV, the model is trained on all data points except one, which is used as the test set. This is repeated such that each data point serves as the test set exactly once. LOOCV provides a robust estimate of the model's performance but can be computationally intensive for larger datasets. It would be especially useful here to confirm the model's effectiveness due to the small size of the dataset.
+
+### Summary
+The combination of model tuning, visualization, and evaluation techniques provides a comprehensive approach to understanding and validating the Random Forest model. This methodical approach ensures that the model is both accurate and generalizable, capable of distinguishing between different types of seismic events effectively. The visualization of the decision boundary offers an intuitive way to interpret the model’s performance, while the error rate plot and potential LOOCV provide quantitative measures of model accuracy.
 
 ```{r echo=FALSE}
 library(e1071)
