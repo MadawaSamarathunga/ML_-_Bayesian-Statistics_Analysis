@@ -38,20 +38,23 @@ ggplot(earthquake, aes(x=body, y=surface, color=type)) +
 
 ```
 
-### Graphical Analysis:
-The scatter plot created by this code would show each earthquake or explosion event as a point in the space defined by its body-wave and surface-wave magnitudes. The colors distinguish between different types of seismic events, which could be crucial for identifying patterns or clusters specific to earthquakes versus explosions.
+The result plot by this code would have each earthquake or explosion event as a point in a space defined by its body-wave and surface-wave magnitudes. The colours are deviating the seismic events and this may be very critical for recognition of the patterns or clusters which are earthquake-related rather than explosions.
 
-### Clustering: If there are visible clusters or distinct areas predominantly occupied by one type of event, this could indicate that these two features (body-wave and surface-wave magnitudes) are effective for distinguishing between earthquakes and explosions.
-Overlaps: Significant overlapping of colors might suggest that the two features alone are not sufficient to distinguish between the event types without additional information or more complex modeling.
+### Clustering
+In case there are evident clusters of distinct areas dominated by one type of event it may suggest that these two features are good for discrimination of earthquakes and explosions.
 
-### Contextual Relevance:
-In the context of monitoring for unauthorized nuclear tests, this visualization helps in quickly assessing whether there are clear, distinguishable patterns in seismic readings that could indicate nuclear activities. Effective differentiation between natural seismic events (earthquakes) and man-made seismic events (nuclear explosions) is crucial for global security and monitoring compliance with international treaties such as the Comprehensive Nuclear-Test-Ban Treaty (CTBT).
+### Overlaps
+If the colours are overlapping significantly then such two features on their own are insufficient to separate between event types without some additional information or more complex modelling.
 
-### Numerical Summaries:
-While the provided code focuses on visual analysis, numerical summaries (like the mean, median, variance of mb and Ms for each type) would complement this by quantifying the central tendencies and dispersions. This could further aid in understanding how significantly the magnitudes for each type differ statistically.
+### Contextual Relevance
+In the monitoring of unauthorized nuclear tests, this makes the visualization process a tool used in a rapid assessment. if there exist some clear and distinctive seismic readings patterns that may show nuclear activities. Efficient discrimination between natural seismic events (earthquakes) and man-made seismic events (nuclear explosions) is very important in the area of global security and control of compliance with the international treaties including the Comprehensive Nuclear-Test-Ban Treaty(CTBT).
 
-### Justification:
-The choice of a scatter plot is justified as it allows stakeholders to visually parse the relationship between two continuous variables across categories. Given the high stakes involved in nuclear monitoring, quick visual assessments alongside rigorous statistical analysis are imperative. The plot facilitates this by providing a clear, immediate visual summary of the data as per the described features.
+### Numerical Summaries
+Though the given code emphasizes on the visual analysis, numerical summaries (such as mean, median, variance, and histograms) are also needed for carrying out the data exploration process. Therefore, the MB and Ms summary (i.e. the summary of mb and Ms for each type) would complete this by defining the central tendencies and dispersion. This could also help in a statistical understanding of the magnitudes of each type significantly.
+
+### Justification
+The use of a scatter plot is supported since it enables stakeholders to see the relationship between two continuous variables across categories. For such high stakes in nuclear monitoring, instant visual, and venerability were of paramount concern assessment coupled with thorough statistical analysis is mandatory. This is made easy by the plot which gives a brief, instant visual representation of the data in mentioned characteristics.
+
 
 ```{r echo=FALSE}
 library(ggplot2)
@@ -66,19 +69,27 @@ ggplot(data, aes(x = type, y = body, fill = type)) +
 
 ```
 
-### Explanation of the Plot:
-The box plot with jitter provides a clear view of how the body-wave magnitudes are distributed within each type of seismic event. The box plot component shows the median (the middle line in the box), the 25th and 75th percentiles (the lower and upper hinges of the box), and potential outliers (points that fall outside 1.5 times the IQR from the hinges). The jittered points represent individual data points, offering a granular look at the data distribution and any potential anomalies or outliers.
+## Explanation of the Plot
 
-### Justification of the Statements:
-Distribution Insight: The plot allows stakeholders to quickly assess whether there are significant differences in the body-wave magnitudes between different types of seismic events. For example, if one type of event typically has higher magnitude readings, this could indicate a different energy release characteristic.
+The jitter with box plot allows to see how body wave magnitudes are distributed within each one type of seismic event. Furthermore, the box plot component represents the median (the middle line in the box), the 25th and 75th percentile whose positions determine the hinges of the box, and potential outliers (points that fall further than 1.5 times IQR from the hinges). Points jittered represent individual data points and provide a very fine level analyse the distribution of data and the possible anomalies or outliers.
 
-Outlier Detection: By visually representing both the summary statistics and the actual data points, the plot helps identify outliers or unusual observations that may warrant further investigation.
+## Justification of the Statements
 
-Decision Making: This type of visualization supports decision-making in seismology and geophysics by providing a straightforward way to compare seismic event types. This could be crucial for designing monitoring systems or for academic studies in seismology.
+### Distribution Insight
 
-Effective Communication: The plot serves as an effective communication tool by presenting complex statistical data in a form that is easy to understand, even for those without deep statistical knowledge.
+The plot helps in rapid detection of any significant differences in the magnitudes of the body-waves among various types of seismic events. For instance, if a certain type of event generally provides higher magnitudes reading, this implies a different energy release feature.
 
-This combination of box plot and jitter plot is particularly effective in contexts where understanding the variability within and across categories is crucial. It is a powerful tool for exploratory data analysis, providing both an overview and a detailed look at the data distribution across different categories.
+### Outlier Detection
+
+Through also showing the summary statistics and the actual data points, this plot assists in identifying the outliers or unusual observations that may need more attention.
+
+### Decision Making
+
+This kind of visualization helps in decision support in seismology and geophysics by giving an easy way of comparison of seismic event types. This is likely to be critical in developing monitoring systems or academic research in seismology.
+
+### Effective Communication
+
+The plot works as a powerful means of communication in both displaying complex statistical data in a way readable to everyone even those who do not have much of statistical knowledge. This cross between box plot and jitter plot works especially in situations where the variability both within and across categories is to be appreciated. It is an important fact finding tool that offers both an overall look and a more detailed show of how the data is distributed over categories.
 
 
 ```{r echo=FALSE}
@@ -95,19 +106,30 @@ ggplot(data, aes(x = type, y = surface, fill = type)) +
 
 ```
 
-Justification of the Statements:
-Visualization of Variability: This plot is effective for visually assessing the variability and central tendencies of surface-wave magnitudes across different types of seismic events. The box plot provides a summary view, while the jittered points give detailed insight into the individual data entries.
+## Justification of the Statements
 
-Comparative Analysis: By displaying data for different types side by side, the plot facilitates direct comparisons between groups. For example, one might observe that nuclear explosions tend to have a tighter range of surface-wave magnitudes compared to earthquakes, which might exhibit a broader spread and potentially higher medians.
+### Visualization of Variability
 
-Outlier Detection: The visualization makes it easy to spot any anomalies or outliers in the data, which could indicate measurement errors or exceptional cases that may require further investigation.
+This plot is good for the visual assessment of the following variability and the central tendencies of magnitudes of surface waves among various classes of seismic events. The box plot gives an overview but the jittered points give a comprehensive outlook on individual data characteristics entries.
 
-Informative and Accessible: The addition of a clear title, axis labels, and a legend makes the plot accessible even to those who may not be familiar with the data or statistical plots, enabling stakeholders or a general audience to understand the findings at a glance.
+### Comparative Analysis
 
-Contextual Relevance:
-In the context of monitoring seismic activities, being able to distinguish between different types of events based on surface-wave magnitudes is crucial. Such plots not only aid in preliminary analyses but can also be instrumental in developing more sophisticated models or algorithms to automate the detection and classification of seismic events. This is particularly important in scenarios where quick decision-making is necessary, such as in early warning systems or nuclear treaty compliance monitoring.
+Since the plot contains information of different types together, it enables direct comparisons of groups. For instance, one can say that nuclear detonations show a narrower range of magnitude of surface-wave in comparison with an earthquake, which might put a wider range and sometimes higher medians.
 
-In summary, the plot generated by this R code effectively uses graphical elements to present key statistical insights into seismic data, aiding in both detailed statistical analysis and high-level data overview. This approach is justified given its utility in exploratory data analysis, where understanding data distribution and anomalies is crucial.
+### Outlier Detection
+
+The graphical depiction allows to notice any anomalies or the outliers in the data, which may imply measuring errors or deviant situations that should be looked into more closely.
+
+### Informative and Accessible
+
+The plot finally turns into a friendly plot with the help of a simple title, axis labels, and a legend that makes the conclusions understandable in a single glance also to laymen.
+
+### Contextual Relevance
+
+This capability is very critical in the context of monitoring of seismic activities, where the ability to differentiate inter-classification of events among surface-wave magnitudes is paramount. Apart from the introductory analysis, such schemes may help generate more advanced models and algorithms fitting for the automation of the process of seismic event recognition and categorization. For example, this is important for situations when quick decisions are needed, such as in early warning systems and monitoring of nuclear treaty compliance.
+
+In conclusion, the graphical plot generated by this R code is graphically pleasing while representing important statistical information in the seismic data analysis, making statistical analysis details and overall data view ready. This approach is supported by its application in exploratory data analysis, when the awareness of data distribution is very significant and anomalies are of great value.
+
 
 
 
@@ -171,7 +193,7 @@ ggplot() +
 ```
 
 ### error rate
-```{r}
+```{r echo=FALSE}
 # Extract the Random Forest model from the caret object
 rf <- rfModel$finalModel
 
@@ -182,31 +204,25 @@ plot(rf$err.rate[, "OOB"], type = "l", col = "red",
      main = "OOB Error Rate vs. Number of Trees")
 
 ```
-Model Tuning
 
-### Random Forest Training:
-Library: The randomForest package in R is used for constructing the Random Forest model.
-Data Partitioning: The dataset is divided into training (80%) and testing (20%) subsets using the createDataPartition function from the caret package, ensuring that the distribution of event types is balanced across both sets.
-Cross-validation: The model's hyperparameters are tuned using 5-fold cross-validation. This method splits the training set into five smaller sets; the model is trained on four of these while validating on the fifth, cycling through each subset. This process helps in optimizing model parameters while avoiding overfitting.
-Tuning the mtry Parameter: The mtry parameter, which determines the number of variables considered at each split in the tree, is tuned. Two values are tested: 1 and 2. This parameter significantly affects the model's performance and helps in finding a good balance between bias and variance.
+## Model Tuning
 
-### Model Visualization
-Decision Surface Visualization:
-Grid Creation: A grid is created over the range of body and surface magnitudes found in the dataset. This grid allows for a comprehensive visualization of how the model classifies different combinations of these two features.
-Prediction on Grid: The Random Forest model predicts the type of event for each point on the grid, essentially plotting the decision boundaries between earthquake and explosion classifications.
-Plotting: Using ggplot2, the decision surface is visualized. The predictions for the grid are shown as a color-filled background (geom_tile), and actual data points are overlaid (geom_point) to show how well the predictions match reality. This visualization helps in understanding the model's classification rules visually.
-Model Evaluation
-### Error Rate Computation:
-Out-of-Bag (OOB) Error: The OOB error rate is plotted against the number of trees in the forest. OOB error is a method of measuring prediction error of random forests, decision trees, and other models utilizing bootstrap aggregating to sub-sample data sampled for the training process. OOB is the mean prediction error on each training sample xᵢ, using only the trees that did not have xᵢ in their bootstrap sample.
-Plot Details: The plot provides insight into how the model's accuracy evolves as more trees are added to the forest. Ideally, as the number of trees increases, the OOB error rate should decrease and then stabilize, indicating the model is neither underfitting nor overfitting.
+### Random Forest Training
+
+## Model Evaluation
+
+**Out-of-Bag (OOB) Error**: The OOB error rate, an estimate of performance using bootstrapped samples, is plotted against the number of trees in the forest. As the number of trees increases, the OOB error rate should decrease and stabilize, indicating proper model fitting without overfitting or underfitting.
 
 ### Additional Evaluation with Leave-One-Out Cross-Validation (LOOCV)
-While not directly shown in the code snippets you provided, leave-one-out cross-validation (LOOCV) could be another method for evaluating the model. In LOOCV, the model is trained on all data points except one, which is used as the test set. This is repeated such that each data point serves as the test set exactly once. LOOCV provides a robust estimate of the model's performance but can be computationally intensive for larger datasets. It would be especially useful here to confirm the model's effectiveness due to the small size of the dataset.
 
-### Summary
-The combination of model tuning, visualization, and evaluation techniques provides a comprehensive approach to understanding and validating the Random Forest model. This methodical approach ensures that the model is both accurate and generalizable, capable of distinguishing between different types of seismic events effectively. The visualization of the decision boundary offers an intuitive way to interpret the model’s performance, while the error rate plot and potential LOOCV provide quantitative measures of model accuracy.
+Although not shown in the provided code snippets, LOOCV could be another method to evaluate the model. In LOOCV, the model is trained on all data points except one, which is used as the test set. This process repeats for each data point, providing a comprehensive evaluation of model performance, albeit at a high computational cost.
 
-```{r echo=FALSE}
+## Summary
+
+This integrated approach to model tuning, visualization, and evaluation allows for a comprehensive understanding and validation of the Random Forest model. The methodology ensures the model is accurate and generalizable, effectively discriminating between different seismic event classes. Visualizing the decision boundary provides an intuitive understanding of model performance, while the error rate plot and potential LOOCV offer numerical measures of model accuracy.
+
+
+```{r svm-plot, echo=FALSE}
 library(e1071)
 library(caret)
 library(ggplot2)
@@ -262,9 +278,69 @@ print(svm.plot)
 # Print the best parameters
 print(best.parameters)
 
-
-
 ```
+
+### Justification
+
+Support Vector Machine (SVM) excels in high-dimensional spaces, making it ideal for binary classification tasks such as distinguishing between nuclear blasts and earthquakes. It performs well when there is a clear margin of separation between classes.
+
+### Model Tuning
+
+**C Parameter**: The `C` parameter can be tuned to balance the trade-off between creating smooth decision boundaries and achieving correct classification of training points.
+
+**Kernel Choice**: The model's performance can be approached from another angle by selecting different kernels, such as linear, polynomial, and radial basis function (RBF), to better capture the complexities in the data.
+
+### Model Visualization
+
+The SVM decision boundary between body and surface-wave magnitudes is plotted in a 2D space to illustrate the classification rules. This visualization helps in understanding how SVM categorizes different seismic events.
+
+# Part C
+
+## Random Forest Classification of Earthquake and Nuclear Explosions
+
+### Pros
+
+- Non-linear data is well handled by a random forest because it is an ensemble of decision trees, thereby making it more capable of handling complexity in the dataset.
+- Random Forest is not sensitive to outliers and noise, as it uses averaging to enhance prediction accuracy.
+- The plot of the Out-Of-Bag (OOB) error rate indicates that the model stabilizes rapidly, and there is no overfitting as the number of trees increases, which can be observed by the almost constant OOB error rate after about 50 trees.
+
+### Cons
+
+- Despite OOB error rate being comparatively low, it is not obvious what quantity of false positives or negatives has been produced without a confusion matrix or similar metrics.
+- The Random Forest can be quite computationally costly with a high number of trees, and it can take longer than other models to train, although this is not an issue here due to the quite stable OOB error rate.
+- The issue of interpretability may arise simply because the Random Forest models are usually more complex and hard to interpret than simpler models.
+
+### Performance
+
+- The plot reveals a red area of earthquake predictions and a blue area of explosion predictions. It appears to discriminate well, however, some earthquake points are falling in the explosion forecast area.
+
+## SVM Classification of Earthquake and Nuclear Explosions
+
+### Pros
+
+- Effective in high-dimensional spaces, which may be useful if more features were employed in the classification.
+- The effectiveness of SVMs comes into play when there is a well-defined margin of separation, and SVMs are adaptable to different kernel functions.
+
+### Cons
+
+- Tuning of parameters such as the penalty parameter (C) and the kernel-specific parameters requires special attention; any misconfiguration can cause loss of performance.
+- May fail when target classes are close to each other in a dataset, i.e., more noise.
+- The model can also be less interpretable because the kernel trick adds complexity.
+
+### Performance
+
+- On the SVM plot, the earthquakes and explosions are distinctly separated, with the earthquakes in general having a higher surface-wave magnitude. This partition shows how the SVM with a well-chosen kernel is able to grasp the boundary between classes very well.
+
+## Comparison and Recommendation
+
+In this kind of comparison of both classifiers, SVM appears to have a clearer boundary between the earthquake and explosion classes since there is a region specifically for each class. This implies that the SVM has effectively captured the inherent patterns in the data that separates the two phenomena. At the same time, the Random Forest plot reveals some common space among the projected areas, which might indicate either the problem of misclassification or the more complex border that might not have been fully modeled by this model.
+
+Given these observations:
+
+- In the case when the decision boundary between the two classes is really complex and non-linear, Random Forest may have a benefit to capture this complexity.
+- When the most significant aspect is computational effectiveness, during the training and prediction process, SVM is usually recommended, especially if the kernel function chosen and its parameters are efficient.
+
+
 # Part D
 
 ```{r echo=FALSE}
@@ -278,12 +354,13 @@ clustering_data <- data[, c("body", "surface")]
 
 # Determine the total within sums of squares for a range of number of clusters
 wss <- (nrow(clustering_data) - 1) * sum(apply(clustering_data, 2, var))
-for (i in 2:10) {
+for (i in 2:4) {
   wss[i] <- sum(kmeans(clustering_data, centers = i, nstart = 20)$withinss)
 }
 
 # Elbow method plot to find optimal number of clusters
-plot(1:10, wss, type = "b", xlab = "Number of Clusters", ylab = "Within groups sum of squares")
+plot(2:4, wss[2:4], type = "b", xlab = "Number of Clusters", ylab = "Within groups sum of squares",
+     main = "Elbow Method for Determining Optimal Number of Clusters")
 
 # Apply K-means clustering with different numbers of clusters
 for (k in 2:4) {
@@ -294,6 +371,7 @@ for (k in 2:4) {
   # Plot the clusters
   p <- ggplot(data, aes(x = body, y = surface, color = cluster)) +
     geom_point(alpha = 0.5) +
+    geom_point(data = data.frame(cluster$centers), aes(x = body, y = surface), colour = "black", size = 3, shape = 8) +
     scale_color_brewer(palette = "Dark2") +
     labs(title = paste("K-means Clustering with", k, "Clusters"),
          x = "Body-Wave Magnitude (mb)",
@@ -310,5 +388,608 @@ for (k in 2:4) {
 
 
 
+```{r lib-for-Bayesian-Statistics, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+library(ggplot2)
+library(rjags)
+library(readr)
+library(coda)
+library(stats)
+library(dplyr)
+library(tidyr)
+library(ggridges)
+library(reshape2)
+library(viridis)
+```
+
+# Bayesian Statistics Task
+## Part A
+
+```{r echo=FALSE}
+# Load necessary library
+library(ggplot2)
+
+# Read the data from CSV
+airline <- read.csv("airline.csv")
+
+# Create a boxplot with custom colors and no legend
+ggplot(airline, aes(x = airline, y = satisfactionscore, fill = airline)) +
+  geom_boxplot() +
+  scale_fill_manual(values=c("A" = "#1f77b4", "B" = "#ff7f0e", "C" = "#2ca02c", "D" = "#d62728")) +
+  labs(title = "Customer Satisfaction Scores by Airline",
+       x = "Airline",
+       y = "Satisfaction Score") +
+  theme_minimal() +
+  theme(legend.position = "none") # Remove the legend
+
+```
+
+Central Tendency: The median line within each box indicates the central tendency of satisfaction scores for each airline. By comparing these lines, you can see which airlines tend to have higher or lower median satisfaction scores.
+
+Spread and Variability: The interquartile range (IQR), represented by the height of each box, shows the spread of the middle 50% of scores. A smaller box indicates that the satisfaction scores are more consistently grouped around the median, suggesting more consistent service quality. Larger boxes indicate greater variability, suggesting inconsistent experiences among passengers.
+
+Outliers: Points that appear as dots outside the whiskers of the boxplot represent outliers. These are scores that are significantly higher or lower than the rest of the data. Outliers can indicate exceptionally good or poor experiences that are not typical of the general customer base.
+
+Comparison Across Airlines:
+If one airline’s median is notably higher than others, it suggests that airline generally provides a better customer experience.
+The presence of outliers, particularly on the lower end, might be a concern for airlines as it indicates some customers are highly dissatisfied.
+
+```{r echo=FALSE}
+# Create a histogram for satisfaction scores
+ggplot(airline, aes(x = satisfactionscore)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black") +
+  labs(title = "Distribution of Satisfaction Scores", x = "Satisfaction Score", y = "Frequency") +
+  theme_minimal()
+```
+
+```{r echo=FALSE}
+# Create score ranges
+airline$score_range <- cut(airline$satisfactionscore, breaks=seq(0, 10, by=1), include.lowest=TRUE)
+
+# Create a density plot
+ggplot(airline, aes(x = satisfactionscore, fill = airline)) +
+  geom_density(alpha = 0.5) +  # Adjust transparency with alpha
+  labs(title = "Density Plot of Satisfaction Scores by Airline",
+       x = "Satisfaction Score",
+       y = "Density") +
+  scale_fill_brewer(palette = "Set1") +  # Adds color palette for better distinction
+  theme_minimal()  # Minimalistic theme
+
+```
+
+Shape of Distribution:The shape of each airline's density curve can tell you about the distribution of satisfaction scores. For example, a normal distribution, a skewed distribution, or a bimodal distribution could be evident, each suggesting different underlying customer satisfaction patterns.
+
+Peak Values:The peaks of the curves (where the curves reach their highest points) represent the most common satisfaction scores for each airline. A higher peak at a higher satisfaction score indicates that a larger proportion of customers are highly satisfied with the airline.
+
+Spread and Variability:The width of the curve indicates variability in satisfaction scores. A wider curve suggests more variability in how customers rate the airline, whereas a narrower curve indicates more consistency in customer ratings.
+
+Overlap Between Airlines:Areas where the density curves of different airlines overlap show scores that are common across multiple airlines. Less overlap can indicate that an airline is unique in how it is perceived in terms of customer satisfaction.
+
+Tail Analysis:The tails of the density curves show how frequent extreme scores (both high and low) are. Longer tails on the lower end might indicate a significant number of very dissatisfied customers, whereas longer tails on the higher end might suggest a significant number of highly satisfied customers.
+
+# Part B
+
+## ANOVA Model Explanation
+
+In our one-way Analysis of Variance (ANOVA) model, the parameter \( \alpha_4 \) is critical as it measures the difference in the mean satisfaction scores between Airline 1 and Airline 4.
+
+### Consistency Across Airline 1
+For Airline 1, the mean satisfaction score, \( \mu_{1j} \), is constant at \( \mu_1 \) for every customer \( j \). This indicates a uniform satisfaction level across all passengers of Airline 1, suggesting that the expected satisfaction score does not vary from customer to customer within this airline.
+
+### Adjusted Mean for Airline 4
+Conversely, the mean satisfaction score for each customer of Airline 4, \( \mu_{4j} \), is defined as \( \mu_1 \) + \( \alpha_4 \). Here, \( \alpha_4 \) adjusts the baseline mean satisfaction score established by Airline 1.
+
+### Interpretation of \( \alpha_4 \)
+- **Positive \( \alpha_4 \)**: Indicates that, on average, customers rate Airline 4 higher than Airline 1.
+- **Negative \( \alpha_4 \)**: Suggests that Airline 4, on average, receives lower satisfaction scores than Airline 1.
+- **Zero \( \alpha_4 \)**: Implies that there is no difference in the average satisfaction scores between the two airlines.
+
+### Bayesian Perspective
+In a Bayesian analysis framework, rather than estimating \( \alpha_4 \) as a single fixed value, it is considered as a distribution of possible values. This reflects the probabilistic nature of statistical estimation and provides a range of plausible \( \alpha_4 \) values. This approach not only accounts for the uncertainty in estimation but also offers a deeper insight into the variability of customer satisfaction between these airlines.
+
+By modeling \( \alpha_4 \) as a distribution, we embrace a more nuanced understanding of how Airline 4 compares to Airline 1, thereby enhancing our decision-making process with a richer, data-driven approach.
+
+# Part C
+
+```{r echo=FALSE}
+
+# Load the necessary library
+library(dplyr)
+
+# Load your dataset
+data <- read.csv("airline.csv")
+
+# Ensure the data is as expected
+#print(head(data))
+#print(colnames(data))
+
+# Fit the ANOVA model
+anova_model <- aov(satisfactionscore ~ airline, data = data)
+
+# Extracting the coefficients
+model_estimates <- coef(anova_model)
+
+# Retrieve the estimated mean for the reference level (Airline A, assumed to be the baseline)
+mu_hat_1 <- model_estimates["(Intercept)"]
+
+# Retrieve the estimated differences (alphas) for other airlines relative to Airline A
+alpha_hat_2 <- model_estimates["airlineB"]
+alpha_hat_3 <- model_estimates["airlineC"]
+alpha_hat_4 <- model_estimates["airlineD"]
+
+# Print the estimates
+cat("Baseline for Airline A:", mu_hat_1, "\n")
+cat("Difference for Airline B from A:", alpha_hat_2, "\n")
+cat("Difference for Airline C from A:", alpha_hat_3, "\n")
+cat("Difference for Airline D from A:", alpha_hat_4, "\n")
+
+# Conduct the hypothesis test using ANOVA
+anova_results <- summary(anova_model)
+
+# Print the ANOVA table
+print(anova_results)
+
+# Report conclusion based on p-value
+if (anova_results[[1]][["Pr(>F)"]][1] < 0.05) {
+    cat("There is a statistically significant difference in satisfaction scores\n across airlines at the 0.05 significance level.\n")
+} else {
+    cat("There is no statistically significant difference in satisfaction scores across airlines at the 0.05 significance level.\n")
+}
 
 
+```
+
+The one-way ANOVA analysis has provided us with the following estimates for the mean satisfaction scores of Airline A and the differences relative to it for Airlines B, C, and D:
+
+- **Baseline Mean Satisfaction for Airline A (\(\mu_1\)):** `r mu_hat_1`
+- **Difference in Satisfaction for Airline B from Airline A (\(\alpha_2\)):** `r alpha_hat_2`
+- **Difference in Satisfaction for Airline C from Airline A (\(\alpha_3\)):** `r alpha_hat_3`
+- **Difference in Satisfaction for Airline D from Airline A (\(\alpha_4\)):** `r alpha_hat_4`
+
+## Analysis Overview
+
+### Model Fitting
+The `aov()` function is used to fit a one-way ANOVA model, assessing whether the mean satisfaction scores significantly differ among different airlines. This statistical approach tests the hypothesis that all airlines deliver similar levels of customer satisfaction.
+
+### Coefficient Extraction
+From the model, coefficients are extracted providing estimates for the mean satisfaction score of the baseline airline (Airline A, denoted as \( \mu_1 \)) and the differences (\( \alpha \)) for each of the other airlines (B, C, and D) relative to Airline A.
+
+### Hypothesis Testing
+The output from `summary(anova_model)` includes the F-statistic and its corresponding p-value. This F-test evaluates whether at least one group mean is statistically different from the others.
+
+## Interpretation of Results
+
+- **If the p-value is less than 0.05:** We reject the null hypothesis that all group means are equal, concluding there is a significant difference in satisfaction scores across the airlines. This indicates that not all airlines are performing equally in terms of customer satisfaction.
+- **If the p-value is greater than or equal to 0.05:** We fail to reject the null hypothesis, concluding there is no significant difference in the satisfaction scores across the airlines.
+
+## Conclusion
+
+### Significant Difference Found (p-value < 0.05)
+
+#### Conclusion
+The analysis indicates a statistically significant difference in satisfaction scores among the airlines, suggesting that not all airlines are performing equally.
+
+#### Justification
+The p-value from the ANOVA test is less than the significance level of 0.05, leading us to reject the null hypothesis that all airlines have the same mean satisfaction score. The existence of statistically significant differences in scores implies that certain airlines may be providing superior or inferior service compared to others. This finding is critical for identifying which airlines are outperforming or underperforming in customer satisfaction.
+
+This comprehensive analysis provides a clear, statistically grounded conclusion on whether airline service satisfaction varies significantly among different airlines, which can inform business and operational strategies. Ensure that the variable and airline level names in the code match those in your actual dataset.
+
+# Part D
+
+```{r echo=FALSE, warning=FALSE}
+# Assuming anova_model is your previously fitted ANOVA model
+library(multcomp)
+
+# Perform Tukey's HSD test
+tukey_results <- TukeyHSD(anova_model)
+
+# View the results
+print(tukey_results)
+
+# Plot the results to visualize the differences
+plot(tukey_results)
+
+
+```
+
+
+## Overview
+This document provides the results and interpretations of the Tukey Honest Significant Differences test conducted on airline satisfaction scores following a significant ANOVA finding.
+
+## Hypotheses for Tukey's HSD Test
+The Tukey HSD test is designed to compare all possible pairs of means to determine if there are any significant differences between them. For our four airlines labeled A, B, C, and D, the following null and alternative hypotheses are considered for each pairwise comparison:
+
+## Pairwise Comparisons:
+
+### B vs. A
+- Null Hypothesis ($H_0: \mu_B = \mu_A$): There is no significant difference between the mean satisfaction scores of airlines B and A.
+- Alternative Hypothesis ($H_a: \mu_B \neq \mu_A$): There is a significant difference between the mean satisfaction scores of airlines B and A.
+
+### C vs. A
+- Null Hypothesis ($H_0: \mu_C = \mu_A$): There is no significant difference between the mean satisfaction scores of airlines C and A.
+- Alternative Hypothesis ($H_a: \mu_C \neq \mu_A$): There is a significant difference between the mean satisfaction scores of airlines C and A.
+
+### D vs. A
+- Null Hypothesis ($H_0: \mu_D = \mu_A$): There is no significant difference between the mean satisfaction scores of airlines D and A.
+- Alternative Hypothesis ($H_a: \mu_D \neq \mu_A$): There is a significant difference between the mean satisfaction scores of airlines D and A.
+
+### C vs. B
+- Null Hypothesis ($H_0: \mu_C = \mu_B$): There is no significant difference between the mean satisfaction scores of airlines C and B.
+- Alternative Hypothesis ($H_a: \mu_C \neq \mu_B$): There is a significant difference between the mean satisfaction scores of airlines C and B.
+
+### D vs. B
+- Null Hypothesis ($H_0: \mu_D = \mu_B$): There is no significant difference between the mean satisfaction scores of airlines D and B.
+- Alternative Hypothesis ($H_a: \mu_D \neq \mu_B$): There is a significant difference between the mean satisfaction scores of airlines D and B.
+
+### D vs. C
+- Null Hypothesis ($H_0: \mu_D = \mu_C$): There is no significant difference between the mean satisfaction scores of airlines D and C.
+- Alternative Hypothesis ($H_a: \mu_D \neq \mu_C$): There is a significant difference between the mean satisfaction scores of airlines D and C.
+
+# Conclusions from Tukey's HSD Test
+The adjusted p-values from the test are used to determine if we can reject the null hypothesis for each pair. Here's a summary of our findings:
+
+- **B vs. A**: With a p-value greater than 0.05, we do not reject the null hypothesis; suggesting no significant difference between airlines B and A.
+- **C vs. A**: With a p-value greater than 0.05, we do not reject the null hypothesis; suggesting no significant difference between airlines C and A.
+- **D vs. A**: With a p-value less than 0.05, we reject the null hypothesis; indicating a significant difference between airlines D and A.
+- **C vs. B**: With a p-value greater than 0.05, we do not reject the null hypothesis; suggesting no significant difference between airlines C and B.
+- **D vs. B**: With a p-value greater than 0.05, we do not reject the null hypothesis; suggesting no significant difference between airlines D and B.
+- **D vs. C**: With a p-value less than 0.05, we reject the null hypothesis; indicating a significant difference between airlines D and C.
+
+The confidence interval plot from the Tukey HSD test provides a visual aid for these conclusions. Confidence intervals not crossing the zero line denote a statistically significant difference in satisfaction scores.
+
+
+# Part E
+
+```{r echo=FALSE}
+
+# Convert airline codes to a categorical variable and satisfaction scores to numeric
+data$airline <- as.factor(data$airline)
+data$satisfactionscore <- as.numeric(data$satisfactionscore)
+
+# Calculate mean satisfaction scores for each airline
+mean_scores <- data %>%
+  group_by(airline) %>%
+  summarise(mean_score = mean(satisfactionscore, na.rm = TRUE))
+
+# Compute the combined mean score for Airlines B and C
+avg_BC <- mean(mean_scores$mean_score[mean_scores$airline %in% c("B", "C")])
+
+# Retrieve the mean score for Airline D
+mean_D <- mean_scores$mean_score[mean_scores$airline == "D"]
+
+# Determine the difference between the mean score of D and the average of B & C
+difference <- mean_D - avg_BC
+
+# Evaluate whether this difference exceeds 3 points
+result <- difference > 3
+
+print(paste("Is Airline D satisfaction score > 3 points higher than AVG for B & C?:", result))
+print(paste("Difference:", difference))
+
+
+```
+
+### Hypotheses
+
+* Null Hypothesis ($H_0 : \mu_D \leq \mu_{BC} + 3$): The mean satisfaction score for Airline D is not more than 3 points higher than the combined average satisfaction score for Airlines B and C.
+
+* Alternative Hypothesis ($H_a : \mu_D > \mu_{BC} + 3$): The mean satisfaction score for Airline D is more than 3 points higher than the combined average satisfaction score for Airlines B and C.
+
+The satisfaction score for Airline D does not exceed the combined average satisfaction score of Airlines B and C by more than 3 points. The actual difference is approximately 1.27 points, which falls below the 3-point threshold set in the hypothesis.
+
+This indicates that while Airline D's average satisfaction score is higher than the mean of Airlines B and C, the increase is not substantial enough to meet the hypothesized 3-point margin. Therefore, the data does not substantiate the hypothesis that Airline D's customer satisfaction significantly surpasses that of Airlines B and C by the proposed margin.
+
+
+# Part F
+
+```{r echo=FALSE}
+# The data provided listed into matrix.
+dataList <- list(
+  y = matrix(
+    c(208, 216, 220, 226, 209,
+      194, 212, 218, 239, 224,
+      199, 211, 227, 227, 221),
+    nrow = 3,
+    byrow = TRUE
+  )
+)
+
+# The JAGS model string.
+modelString <- "
+model {
+  # Priors
+  mu ~ dnorm(0, 0.0001)
+  tau ~ dgamma(0.001, 0.001)
+  for (i in 2:3) {
+    alpha[i] ~ dnorm(0, 0.0001)
+  }
+  for (j in 2:5) {
+    beta[j] ~ dnorm(0, 0.0001)
+  }
+  alpha[1] <- 0
+  beta[1] <- 0
+
+  # Likelihood
+  for (i in 1:3) {
+    for (j in 1:5) {
+      y[i,j] ~ dnorm(mu_ij[i,j], tau)
+      mu_ij[i,j] <- mu + alpha[i] + beta[j]
+    }
+  }
+
+  # Derived quantities
+  sigma <- sqrt(1 / tau)
+}
+"
+
+# Initial values for each chain, omitting fixed parameters
+initValues <- list(
+  list(mu = 0, tau = 1),
+  list(mu = 0, tau = 1),
+  list(mu = 0, tau = 1)
+)
+
+# Parameters to monitor
+parameters <- c("mu", "alpha", "beta", "tau", "sigma")
+
+# Setting up the model
+model <- jags.model(textConnection(modelString), data = dataList, inits = initValues, n.chains = 3)
+
+# Burn-in
+update(model, 1000)
+
+# Running the model
+samples <- coda.samples(model, variable.names = parameters, n.iter = 10000)
+
+# Results
+summary(samples)
+
+```
+
++ **Overall Mean \(\mu\)**: The aggregate mean carbon sequestration level has a posterior mean of 198.94 and a median of 198.99, with a 95% credible interval between roughly 187.68 and 209.53. This parameter reflects the general carbon sequestration accounting for individual field and treatment effects.
+
++ **Field-Specific Effects \(\alpha_i\)**: Compared to the baseline field (Field 1 with an effect of 0):
+  + For **Field 2 \(\alpha_{2}\)**, we observe a posterior mean effect on carbon sequestration of 1.90 and a median of approximately 1.86. The 95% credible interval spans from about -8.13 to 12.02.
+  + **Field 3 \(\alpha_{3}\)** shows a posterior mean effect of 1.46 and a median of approximately 1.44, with a 95% credible interval extending from -8.24 to 11.62.
+
+  The credible intervals suggest substantial overlap around zero, indicating high uncertainty about the influence of field location on carbon sequestration.
+
++ **Treatment Effects \(\beta_j\)**: Relative to the reference treatment (Treatment T1 with an effect of 0):
+  + **Treatment T2 \(\beta_{2}\)** has a posterior mean of 12.89 and a median of approximately 12.84, and its 95% credible interval ranges from a low of 0.05 to 26.18.
+  + **Treatment T3 \(\beta_{3}\)**'s effect has a posterior mean of 21.56 and a median of approximately 21.49, with a credible interval from 17.26 to 34.77.
+  + For **Treatment T4 \(\beta_{4}\)**, the posterior mean is 30.54 and the median 30.52, with a 95% credible interval from 26.49 to 43.61.
+  + **Treatment T5 \(\beta_{5}\)** exhibits a posterior mean of 17.89 and a median of 17.83, with a credible interval from 13.84 to 30.94.
+
+  The treatments present discernible variations in effectiveness, with T4 and T3 emerging as notably superior, followed by T5 and T2.
+
++ **Precision of Measurements \(\tau\)**: The posterior mean for the precision of carbon sequestration readings is 0.02091, the median is 0.01924, and the 95% credible interval is between approximately 0.00564 to 0.04542. This measure inversely relates to the variance in carbon data, indicating the degree of spread or consistency.
+
++ **Standard Deviation \(\sigma\)**: The posterior mean of the standard deviation is found to be 7.66 with a median of 7.21. The range of the 95% credible interval is quite broad, from about 4.69 to 13.31, reflecting moderate dispersion in the measurements.
+
+## Interpretations
+
++ The wide credible intervals for field effects \(\alpha_i\) reveal that while individual field locations contribute to variability, there remains uncertainty in quantifying their precise impact.
++ Treatments exhibit notable differences in their influence on carbon sequestration, with T4 and T3 being statistically significant and most effective when considering both the means and the credible intervals.
++ The absence of zero in the credible intervals for treatment effects \(\beta_j\) underscores the statistical significance and substantive impact of treatment type on carbon sequestration.
++ The posterior distribution of precision \(\tau\) combined with the standard deviation \(\sigma\) conveys that there is inherent variability in the data, albeit not excessively high, suggesting that the observed results are not merely due to measurement noise.
++ Overall, the analysis suggests that treatment type is a key determinant of carbon sequestration levels, overshadowing the slight variations that might be attributed to field location.
+
+# Part G
+
+```{r part g density, echo=FALSE, message=FALSE, warning=FALSE, fig.width=3, fig.height=4}
+
+# Set up the graphical parameters to layout the plots in a 3x2 grid
+par(mfrow=c(3,2), mar=c(4,4,2,1))
+
+# Density plots for alpha[2] and alpha[3]
+densplot(samples, varname=paste("alpha[", 2:3, "]", sep=""))
+
+# Density plots for beta[2], beta[3], beta[4], beta[5]
+densplot(samples, varname=paste("beta[", 2:5, "]", sep=""))
+
+# Reset the plotting parameters back to defaults
+par(mfrow=c(1,1), mar=c(5,4,4,2) + 0.1)
+
+```
+
+
+```{r part g trace, echo=FALSE, message=FALSE, warning=FALSE, fig.width=3, fig.height=4}
+
+# Assuming samples is your mcmc.list object from JAGS
+
+# Set up the graphical parameters to layout the plots in a 3x2 grid
+par(mfrow=c(3,2), mar=c(4,4,2,1))
+
+# Traceplots for alpha[2] and alpha[3]
+traceplot(samples, varname=paste("alpha[", 2:3, "]", sep=""))
+
+# Traceplots for beta[2], beta[3], beta[4], beta[5]
+traceplot(samples, varname=paste("beta[", 2:5, "]", sep=""))
+
+# Reset the plotting parameters back to defaults
+par(mfrow=c(1,1), mar=c(5,4,4,2) + 0.1)
+
+```
+
+## Density Plots
+From the density plots:
+
+- **α parameters (Field Effects)**: The plots for \(\alpha_2\) and \(\alpha_3\) show the posterior distribution of the field effects relative to the baseline field (\(\alpha_1\), which is set to 0). The distributions for both \(\alpha_2\) and \(\alpha_3\) appear unimodal and centered around a positive value, indicating that these fields may have higher carbon sequestration than the baseline, though the effects are not far from zero, suggesting the differences might not be substantial.
+
+- **β parameters (Treatment Effects)**: The density plots for \(\beta_2\), \(\beta_3\), \(\beta_4\), and \(\beta_5\) represent the effects of the treatments T2, T3, T4, and T5 relative to the baseline treatment (T1). All treatment effects show unimodal distributions, suggesting distinct differences in their efficacy. Notably, \(\beta_4\) shows a higher mean effect compared to the others, indicating that treatment T4 might be the most effective among them.
+
+- **Overall Mean (\(\mu\))**: The density plot for \(\mu\) shows the overall mean carbon sequestration across all treatments and fields. It is unimodal and relatively narrow, indicating a precise estimate of the overall mean.
+
+- **Precision (\(\tau\)) and Standard Deviation (\(\sigma\))**: The plots for \(\tau\) and \(\sigma\) (derived from \(\tau\)) show the estimated precision and variability of carbon sequestration measurements. A higher value of \(\tau\) (or lower \(\sigma\)) would indicate more precise measurements with less variability.
+
+## Trace Plots
+For the trace plots:
+
+- **Convergence and Mixing**: Ideally, the trace plots should show a "fuzzy caterpillar" pattern, indicating good mixing and that the chain is sampling evenly from the posterior distribution. From your plots, it seems there's a reasonable degree of mixing for all parameters, suggesting that the MCMC chains have likely converged. However, it is essential to perform further convergence diagnostics such as the Gelman-Rubin statistic.
+
+## Discussion and Conclusions
+The results indicate that the treatments have varying levels of effectiveness on carbon sequestration. Particularly, treatment T4 may be the most effective, but the final conclusion should consider both the mean effects and their respective credible intervals.
+
+There seems to be some field-to-field variation in carbon sequestration, but the field effects \(\alpha_2\) and \(\alpha_3\) are not dramatically different from zero (the effect of the baseline field, \(\alpha_1\)), which might suggest that the location has a minor impact on carbon sequestration compared to the type of treatment applied.
+
+The precision of the measurements and the standard deviation indicate moderate variability in the carbon sequestration measurements, which suggests that the data is reliable and the observed effects are not just due to noise.
+
+It's critical to check the 95% credible intervals for the \(\alpha\) and \(\beta\) parameters. If zero is not contained within these intervals, it could indicate a statistically significant effect. The density plots can provide a visual indication, but numerical confirmation is necessary.
+
+Overall, this analysis can guide the farmer in selecting the most effective carbon sequestration technique, taking into account both the type of treatment and the slight variations due to field location.
+
+# Part H
+
+```{r echo=FALSE}
+# Convert samples to a data frame
+samples_df <- do.call(rbind, lapply(samples, as.data.frame))
+
+# Calculate the 95% credible intervals for each parameter
+credible_intervals <- apply(samples_df, 2, function(x) {
+    c(quantile(x, probs=c(0.025, 0.975)))
+})
+
+# Transform the credible intervals into a data frame for plotting
+ci_df <- t(credible_intervals) # Transpose to get parameters as rows
+ci_df <- as.data.frame(ci_df) # Coerce to data frame
+names(ci_df) <- c("lwr", "upr") # Name the columns
+ci_df$parameter <- rownames(ci_df) # Create a parameter column
+
+# Filter to include only alpha, beta, and mu parameters
+ci_df <- ci_df[grep("alpha|beta|mu", ci_df$parameter), ]
+
+# Plotting the intervals
+ggplot(ci_df, aes(x=parameter, ymin=lwr, ymax=upr)) +
+  geom_errorbar() +
+  coord_flip() +
+  labs(title = '95% Credible Intervals for Parameters', x = 'Parameter', y = 'Credible Interval') +
+  theme_minimal()
+
+
+```
+
+# Part I
+
+```{r echo=FALSE, warning=FALSE}
+# Convert samples to a data frame
+samples_df <- as.data.frame(do.call(rbind, lapply(samples, as.data.frame)))
+
+# Calculate the differences between beta parameters
+samples_df$diff_beta4_beta1 <- samples_df$`beta[4]` - samples_df$`beta[1]`
+samples_df$diff_beta4_beta2 <- samples_df$`beta[4]` - samples_df$`beta[2]`
+samples_df$diff_beta4_beta3 <- samples_df$`beta[4]` - samples_df$`beta[3]`
+samples_df$diff_beta4_beta5 <- samples_df$`beta[4]` - samples_df$`beta[5]`
+
+# Calculate the 95% credible intervals for the differences
+diff_intervals <- apply(samples_df[, grep('diff_beta4_beta', names(samples_df))], 2, function(x) {
+    quantile(x, probs=c(0.025, 0.975))
+})
+
+# Transform the credible intervals into a data frame for plotting
+ci_diff_df <- as.data.frame(t(diff_intervals))
+ci_diff_df$parameter <- rownames(ci_diff_df)
+rownames(ci_diff_df) <- NULL
+names(ci_diff_df) <- c("lwr", "upr", "parameter")
+
+# Plotting the intervals
+ggplot(ci_diff_df, aes(x=parameter, ymin=lwr, ymax=upr)) +
+  geom_errorbar(width=0.2) +
+  coord_flip() +
+  labs(title = '95% Credible Intervals for Differences in Treatment Effects', 
+       x = 'Treatment Difference', y = 'Credible Interval') +
+  theme_minimal()
+
+```
+
+# Part J
+
+```{r echo=FALSE, warning=FALSE}
+# JAGS model string
+modelString <- "
+model {
+  for (j in 2:5) {
+    beta[j] ~ dnorm(0, 0.0001) # Consider more informative priors if appropriate
+  }
+  beta[1] <- 0 # Baseline treatment effect fixed at zero
+  
+  for (i in 1:3) {
+    for (j in 1:5) {
+      y[i,j] ~ dnorm(mu + beta[j], tau) # Observations are normally distributed
+    }
+  }
+  
+  mu ~ dnorm(0, 0.0001) # Prior for overall mean
+  tau ~ dgamma(0.001, 0.001) # Prior for precision, consider adjusting
+  sigma <- 1 / sqrt(tau) # Derived parameter for standard deviation
+}
+"
+
+# Ensure dataList is defined and contains the appropriate data
+
+# Initialize the model
+jagsModel <- jags.model(textConnection(modelString), data = dataList)
+
+# Burn-in period, consider checking for convergence here
+update(jagsModel, 1000)
+
+# Sample from the posterior distribution
+samples <- coda.samples(jagsModel, variable.names = c("mu", "beta", "sigma", "tau"), n.iter = 5000)
+
+# Checking convergence diagnostics (not shown in the original script)
+# plot(samples) # To generate trace plots
+# gelman.diag(samples) # Gelman-Rubin diagnostic
+
+# Summarize the results directly from the mcmc.list object
+summary_stats <- summary(samples)
+
+# Enhance the data frame to include available summary statistics
+post_summary_df <- data.frame(
+  Parameter = rownames(summary_stats$quantiles),
+  Mean = summary_stats$statistics[, "Mean"],
+  Median = summary_stats$quantiles[, "50%"],
+  Lower_95_CI = summary_stats$quantiles[, "2.5%"],
+  Upper_95_CI = summary_stats$quantiles[, "97.5%"],
+  SD = summary_stats$statistics[, "SD"]
+  # Removed n.eff as it seems to not be present
+)
+
+# Printing the summary
+print(post_summary_df)
+
+
+
+```
+
+# Part K
+
+```{r part K, echo=FALSE, warning=FALSE}
+# Extract the beta parameters into a separate data frame
+beta_samples <- as.data.frame(as.mcmc(samples))
+
+# Prepare a long format data frame suitable for ggplot2
+beta_long_df <- melt(beta_samples, measure.vars = grep("beta", names(beta_samples), value = TRUE))
+
+# Calculate the 95% Credible Intervals
+beta_ci <- apply(beta_samples[, grep("beta", names(beta_samples))], 2, function(x) {
+  quantile(x, probs = c(0.025, 0.975))
+})
+
+# Prepare a data frame for the credible intervals
+ci_df <- as.data.frame(t(beta_ci), stringsAsFactors = FALSE)
+colnames(ci_df) <- c("Lower", "Upper")
+ci_df$Parameter <- rownames(ci_df)
+
+# Plot the posterior densities and credible intervals
+ggplot(beta_long_df, aes(x = value, y = variable, fill = variable)) +
+  geom_density_ridges(scale = 3, rel_min_height = 0.01) +
+  geom_errorbar(data = ci_df, aes(xmin = Lower, xmax = Upper, y = Parameter), 
+                color = "blue", width = 0.2, inherit.aes = FALSE) +
+  scale_fill_viridis_d(begin = 0.3, end = 0.7, direction = 1) + # Discrete color scale
+  theme_minimal() +
+  labs(title = "Posterior Densities and 95% Credible Intervals for Beta Parameters",
+       x = "Value", y = "Parameter") +
+  theme(legend.position = "none") # Remove the legend if not needed
+
+
+```
+
+# Part L

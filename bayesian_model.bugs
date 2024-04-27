@@ -1,0 +1,23 @@
+model {
+  mu ~ dnorm(0, 0.0001)
+  tau ~ dgamma(0.001, 0.001)
+  
+  for (i in 2:N) {
+    alpha[i] ~ dnorm(0, 0.0001)
+  }
+  for (j in 2:T) {
+    beta[j] ~ dnorm(0, 0.0001)
+  }
+  
+  alpha[1] <- 0
+  beta[1] <- 0
+  
+  for (i in 1:N) {
+    for (j in 1:T) {
+      y[i,j] ~ dnorm(mu_ij[i,j], tau)
+      mu_ij[i,j] <- mu + alpha[i] + beta[j]
+    }
+  }
+  
+  sigma <- 1 / sqrt(tau)
+}
